@@ -1,6 +1,6 @@
 import './drum.scss';
 
-import {Component, createRef} from "react";
+import {Component} from "react";
 import DrumItem from "./drum-item";
 
 class Drum extends Component {
@@ -55,28 +55,37 @@ class Drum extends Component {
                     url: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3'
                 },
             ],
-            input: 'fish text',
+            displayInput: 'fish text',
             powerButton: false,
+            volume: 50
         }
+        this.updateDisplayText = this.updateDisplayText.bind(this);
+        this.updateVolume = this.updateVolume.bind(this);
     }
 
     updateDisplayText(text) {
         this.setState({
-            input: text
+            displayInput: text,
         })
     }
 
+    updateVolume(volume) {
+       this.setState({
+           volume: volume.target.value,
+       })
+    }
+
     render() {
-        const {data, input, power} = this.state;
+        const {data, displayInput, volume} = this.state;
         return (
             <div className={'drum'} id={'drum-machine'}>
-                <div className={'drum__header'}>
+                <div className={'drum__header'} id="display">
                     <h1 className="drum__header-text">
-                        {input}
+                        {displayInput}
                     </h1>
                 </div>
                 <div className="drum__controls">
-                    <input type="range"/>
+                    <input type="range" onChange={(e) => this.updateVolume(e)}/>
                     <input type="checkbox"/>
                 </div>
 
@@ -86,9 +95,9 @@ class Drum extends Component {
                             return (
                                 <DrumItem
                                     updateDisplayText={this.updateDisplayText}
-                                    letter={item.keyTrigger}
                                     key={i}
-                                    audioSrc={item.url}/>
+                                    drumItem={item}
+                                    volume={volume}/>
                             )
                         })
                     }
