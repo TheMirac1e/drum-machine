@@ -57,7 +57,7 @@ class Drum extends Component {
             ],
             displayInput: 'fish text',
             powerButton: false,
-            volume: 50
+            volume: 10
         }
         this.updateDisplayText = this.updateDisplayText.bind(this);
         this.updateVolume = this.updateVolume.bind(this);
@@ -85,7 +85,7 @@ class Drum extends Component {
                     </h1>
                 </div>
                 <div className="drum__controls">
-                    <input type="range" onChange={(e) => this.updateVolume(e)}/>
+                    <input type="range" value={volume} onChange={(e) => this.updateVolume(e)}/>
                     <input type="checkbox"/>
                 </div>
 
