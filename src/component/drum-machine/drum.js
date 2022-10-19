@@ -40,7 +40,10 @@ class Drum extends Component {
                 </div>
                 <div className="drum__controls">
                     <input type="range" value={volume} onChange={(e) => this.updateVolume(e)}/>
-                    <input className={'drum__power'} type="checkbox"/>
+                    <label className={'drum__power'} htmlFor="power">
+                        <input id={'power'} type="checkbox" onChange={() => console.log('checked')}/>
+                        <span className={'drum__swiper'}></span>
+                    </label>
                 </div>
 
                 <div className="drum__content">
