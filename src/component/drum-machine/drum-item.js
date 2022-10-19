@@ -1,6 +1,5 @@
 import './drum-item.scss';
 import {Component, createRef} from "react";
-import {findDOMNode} from "react-dom";
 
 class DrumItem extends Component {
     constructor(props) {
